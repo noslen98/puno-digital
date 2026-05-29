@@ -132,7 +132,7 @@ img { max-width: 100%; display: block; }
     position: absolute;
     inset: 0;
 
-    background-image: url("./lago titicaca.jpg");
+    background-image: url("lago titicaca.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
