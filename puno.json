@@ -3,63 +3,63 @@
     {
       "nombre": "Lago Titicaca",
       "descripcion": "El lago más alto del mundo navegable. Estar ahí y ver ese azul profundo con la cordillera de fondo es algo que no se olvida fácil. A 3,812 metros, el frío pega pero vale cada segundo.",
-      "imagen": "images/lago titicaca.jpg",
+      "imagen": "lago titicaca.jpg",
       "categoria": "lago",
       "altitud": "3,812 m.s.n.m"
     },
     {
       "nombre": "Islas Flotantes de los Uros",
       "descripcion": "Islas que literalmente flotan, hechas de totora por el pueblo Uro. Caminar sobre ellas es raro al principio porque todo se mueve un poco. Los Uros viven ahí todavía, no es un show turístico, es su vida real.",
-      "imagen": "images/isla de urus.jpg",
+      "imagen": "isla de urus.jpg",
       "categoria": "isla",
       "altitud": "3,810 m.s.n.m"
     },
     {
       "nombre": "Isla Taquile",
       "descripcion": "Para llegar hay que tomar bote y subir bastante a pie, pero una vez arriba la vista del lago es brutal. Los hombres de Taquile tejen mejor que muchas mujeres en otros lados, es tradición de siglos. La UNESCO los reconoció por eso.",
-      "imagen": "images/isla taquile.webp",
+      "imagen": "isla taquile.webp",
       "categoria": "isla",
       "altitud": "3,950 m.s.n.m"
     },
     {
       "nombre": "Isla Amantaní",
       "descripcion": "Acá puedes quedarte a dormir en casa de una familia de la comunidad. Te reciben con comida, música y todo. No hay hoteles ni internet muy bueno, y eso está bien. En la cima están los templos de Pachatata y Pachamama.",
-      "imagen": "images/isla amantani.webp",
+      "imagen": "isla amantani.webp",
       "categoria": "isla",
       "altitud": "3,823 m.s.n.m"
     },
     {
       "nombre": "Sillustani",
       "descripcion": "Torres funerarias preincas en medio de la puna, con una laguna al costado. Las chullpas más grandes miden como 12 metros. Lo raro es que la puerta siempre mira al este, al sol. Nadie sabe bien cómo las construyeron sin maquinaria.",
-      "imagen": "images/sillustani.jpg",
+      "imagen": "sillustani.jpg",
       "categoria": "arqueologia",
       "altitud": "3,856 m.s.n.m"
     },
     {
       "nombre": "Cutimbo",
       "descripcion": "Menos turístico que Sillustani pero igual de impresionante. Las chullpas están sobre una meseta con vista a todo el altiplano. Hay petroglifos en las rocas que la gente pasa por alto, pero están ahí si buscas bien.",
-      "imagen": "images/cutimbo.jpg",
+      "imagen": "cutimbo.jpg",
       "categoria": "arqueologia",
       "altitud": "4,010 m.s.n.m"
     },
     {
       "nombre": "Lampa",
       "descripcion": "Le dicen la Ciudad Rosada porque sus edificios son de ese color. Tiene una iglesia colonial con una copia de la Piedad de Miguel Ángel, que alguien trajo acá hace siglos. Es chica pero tranquila, buena para una tarde.",
-      "imagen": "images/lampa.png",
+      "imagen": "lampa.png",
       "categoria": "ciudad",
       "altitud": "3,892 m.s.n.m"
     },
     {
       "nombre": "Ciudad de Puno",
       "descripcion": "La ciudad en sí tiene de todo: mercado, malecón, iglesia colonial. En febrero con la Candelaria se llena de gente de todo el Perú y el mundo. El resto del año es tranquila y fría, pero con mucha vida.",
-      "imagen": "images/puno.webp",
+      "imagen": "puno.webp",
       "categoria": "ciudad",
       "altitud": "3,827 m.s.n.m"
     },
     {
       "nombre": "Reserva Nacional del Titicaca",
       "descripcion": "Protege los totorales y la fauna del lago: patos, flamencos, y el zambullidor del Titicaca que no puede volar. Es tranquilo, sin mucha gente. Ideal si te gusta la naturaleza sin aglomeración.",
-      "imagen": "images/reserva nacional del titicaca.jpg",
+      "imagen": "reserva nacional del titicaca.jpg",
       "categoria": "naturaleza",
       "altitud": "3,812 m.s.n.m"
     }
@@ -69,7 +69,7 @@
       "id": 1,
       "nombre": "Trucha Frita",
       "descripcion": "La trucha del Titicaca tiene un sabor diferente a cualquier trucha de río. Frita con limón y papas doradas al costado. Plato infaltable si vas a Puno.",
-      "imagen": "images/trucha.png",
+      "imagen": "trucha.png",
       "ingredientes": ["1 trucha entera del Titicaca", "Ajo molido al gusto", "Jugo de limón", "Orégano seco", "Sal y pimienta", "Aceite para freír", "Papas sancochadas"],
       "receta": "Limpiar la trucha y hacerle cortes en los lados. Mezclar ajo, limón, sal, pimienta y orégano, y untarla bien por dentro y fuera. Dejar reposar media hora. Freír en aceite caliente unos 8 minutos por lado hasta que esté dorada y crujiente. Servir con papas y una ensalada sencilla.",
       "origen": "Orillas del Lago Titicaca"
@@ -78,7 +78,7 @@
       "id": 2,
       "nombre": "Chuño",
       "descripcion": "Papa deshidratada con el frío del altiplano. Suena raro pero es la forma más antigua de conservar alimentos en los Andes, siglos antes de los refrigeradores. Tiene un sabor fuerte que no es para todos, pero es parte fundamental de la cocina puneña.",
-      "imagen": "images/chuño.jpg",
+      "imagen": "chuño.jpg",
       "ingredientes": ["Papas nativas pequeñas", "Frío nocturno del altiplano (bajo cero)", "Sol de día", "Agua de río o laguna"],
       "receta": "El proceso dura varios días: de noche el frío congela las papas, de día se pisan para sacarles la humedad y se ponen al sol. Se repite hasta que queden completamente secas y negras. Para comerlas: remojar 24 horas en agua, hervir y acompañar con cualquier guiso.",
       "origen": "Técnica milenaria del altiplano quechua-aymara"
@@ -87,7 +87,7 @@
       "id": 3,
       "nombre": "Moraya",
       "descripcion": "Es el hermano blanco del chuño. Se hace dejando las papas en agua de río corriente durante semanas en las noches frías. Queda más suave y de color claro. Va perfecto en el chairo.",
-      "imagen": "images/moraya.png",
+      "imagen": "moraya.png",
       "ingredientes": ["Papas nativas pequeñas", "Agua corriente de río o manantial", "Noches frías del altiplano (varias semanas)"],
       "receta": "Se sumergen las papas en agua corriente de río durante las noches de frío del altiplano por unos 20 a 30 días. El agua fluye constantemente. Luego se sacan y se secan al sol. El resultado es una papa blanca y esponjosa, más suave que el chuño negro.",
       "origen": "Comunidades aymaras — altiplano de Puno"
@@ -96,7 +96,7 @@
       "id": 4,
       "nombre": "Cuy Chactado",
       "descripcion": "El cuy es conejillo de indias. Frito entero y aplastado con una piedra. Sí, suena fuerte si nunca lo viste, pero en los Andes es un plato de fiesta desde tiempos preincas. La carne es magra y sabrosa.",
-      "imagen": "images/cuy.webp",
+      "imagen": "cuy.webp",
       "ingredientes": ["1 cuy limpio y entero", "Ajo molido", "Comino", "Sal gruesa", "Pimienta negra", "Aceite abundante", "Papas nativas"],
       "receta": "Sazonar el cuy con ajo, comino, sal y pimienta por todos lados. Aplastarlo con una piedra plana o tabla pesada para que quede parejo. Freír en aceite bien caliente 15-20 minutos por lado presionando para que dore parejo y quede crujiente. Servir con papas y salsa de huacatay.",
       "origen": "Tradición andina — sierra peruana y boliviana"
@@ -105,7 +105,7 @@
       "id": 5,
       "nombre": "Pesque de Quinoa",
       "descripcion": "Una especie de mazamorra espesa de quinua con leche y queso. Suena simple pero es muy nutritivo y reconfortante con el frío del altiplano. Se come mucho en desayunos y almuerzos familiares.",
-      "imagen": "images/Pesque de Quinoa.jpg",
+      "imagen": "Pesque de Quinoa.jpg",
       "ingredientes": ["1 taza de quinua bien lavada", "2 tazas de leche", "Queso fresco desmenuzado", "Mantequilla", "Sal al gusto", "Cebolla", "Ajo"],
       "receta": "Hervir la quinua en agua hasta que abra. Aparte, sofreír cebolla y ajo en mantequilla, agregar la leche y calentar. Mezclar con la quinua cocida y revolver hasta que espese como mazamorra. Añadir queso fresco, rectificar sal. Servir caliente, queda bien con huevo frito encima.",
       "origen": "Altiplano de Puno — cocina familiar quechua"
@@ -114,7 +114,7 @@
       "id": 6,
       "nombre": "Api con Pastel",
       "descripcion": "El desayuno más tradicional de los mercados puneños. El api es una bebida caliente de maíz morado con canela y clavo, dulce y espesa. El pastel es un buñuelo frito espolvoreado de azúcar. Juntos son perfectos para el frío de las mañanas.",
-      "imagen": "images/api con pastel.png",
+      "imagen": "api con pastel.png",
       "ingredientes": ["Harina de maíz morado", "Canela en rama", "Clavo de olor", "Azúcar al gusto", "Unas gotas de limón", "Para el pastel: harina, mantequilla, huevo, azúcar glass"],
       "receta": "Disolver la harina de maíz morado en agua fría. Llevar a fuego medio con canela y clavo, revolver hasta que espese. Endulzar y agregar limón al gusto. Para el pastel: hacer una masa con harina, mantequilla y huevo, formar discos y freír hasta dorar. Servir el api bien caliente con el pastel espolvoreado de azúcar.",
       "origen": "Mercados y desayunaderos de Puno"
@@ -123,7 +123,7 @@
       "id": 7,
       "nombre": "Mazamorra de Calabaza",
       "descripcion": "Postre dulce de calabaza cocida con chancaca y canela. Muy casero, muy de abuela. Se sirve frío con canela encima. En las picanterías antiguas de Puno no puede faltar.",
-      "imagen": "images/mazamora de calabaza.png",
+      "imagen": "mazamora de calabaza.png",
       "ingredientes": ["Calabaza madura pelada", "Chancaca (panela) al gusto", "Canela en rama", "Clavo de olor", "Maicena para espesar", "Canela molida para decorar"],
       "receta": "Hervir la calabaza en trozos con chancaca, canela y clavo hasta que esté bien blanda. Aplastar un poco para que suelte almidón. Agregar maicena disuelta en agua fría y cocinar 10 minutos más removiendo para que espese. Dejar enfriar y servir con canela molida encima.",
       "origen": "Picanterías tradicionales del altiplano"
@@ -132,7 +132,7 @@
       "id": 8,
       "nombre": "Chairo Punense",
       "descripcion": "Un guiso contundente con chuño, moraya, chalona (carne seca de oveja) y verduras. Es el plato que te calienta por dentro en los días más fríos del altiplano. Cada familia tiene su propia versión.",
-      "imagen": "images/chairo.png",
+      "imagen": "chairo.png",
       "ingredientes": ["Chuño remojado desde la noche anterior", "Chalona (carne seca de oveja)", "Papa blanca", "Zanahoria", "Trigo mote cocido", "Col", "Hierbabuena fresca"],
       "receta": "Hervir la chalona en agua hasta que esté blanda, puede tardar una hora. Agregar el chuño escurrido, papa y zanahoria en trozos. Incorporar el trigo mote y la col. Sazonar con sal, pimienta y hierbabuena. Cocinar a fuego lento otros 45 minutos. Servir bien caliente.",
       "origen": "Cocina aymara — altiplano de Puno"
@@ -141,7 +141,7 @@
       "id": 9,
       "nombre": "Sopa de Quinoa",
       "descripcion": "Sopa sencilla pero muy nutritiva. La quinua del altiplano puneño es de las mejores del mundo. Con verduras de la zona queda una sopa que alimenta de verdad, no solo llena.",
-      "imagen": "images/Sopa de Quinoa.jpg",
+      "imagen": "Sopa de Quinoa.jpg",
       "ingredientes": ["1 taza de quinua lavada", "Caldo de res o verduras", "1 zanahoria", "2 papas medianas", "Cebolla y ajo", "Hierbabuena o perejil"],
       "receta": "Sofreír cebolla y ajo picado en un poco de aceite. Agregar el caldo y llevar a hervir. Incorporar zanahoria y papa en cubos. Cuando estén a medio cocer, añadir la quinua lavada. Cocinar 20 minutos más a fuego medio. Sazonar y servir con hierbabuena fresca.",
       "origen": "Cocina familiar del altiplano punense"
