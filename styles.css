@@ -128,11 +128,16 @@ img { max-width: 100%; display: block; }
   background: linear-gradient(135deg, var(--azul-profundo) 0%, var(--azul-titicaca) 60%, var(--dorado-candelaria) 100%);
 }
 
-..hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: url('lago titicaca.jpg') center/cover no-repeat;
-  z-index: 1;
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+
+    background-image: url("./lago titicaca.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    z-index: 1;
 }
 
 .hero-content {
