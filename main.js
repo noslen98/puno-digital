@@ -36,7 +36,7 @@ function applyTheme(theme) {
 // --- carga del archivo JSON con los datos de destinos y gastronomía ---
 async function loadData() {
   try {
-    const res = await fetch('data/puno.json');
+    const res = await fetch('puno.json');
     punoData = await res.json();
     renderDestinos(punoData.destinos);
     renderGastronomia(punoData.gastronomia);
