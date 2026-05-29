@@ -134,10 +134,10 @@ img { max-width: 100%; display: block; }
 
   background:
     linear-gradient(
-      rgba(13, 61, 107, 0.6),
-      rgba(13, 61, 107, 0.6)
-    ),
-    url("lago%20titicaca.jpg");
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.5)
+),
+url("lago%20titicaca.jpg");
 
   background-size: cover;
   background-position: center;
