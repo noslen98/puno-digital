@@ -129,7 +129,13 @@ img { max-width: 100%; display: block; }
 }
 
 .hero-overlay {
-  background: url('lago titicaca.jpg') center/cover no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("lago titicaca.jpg") center center / cover no-repeat;
+  z-index: 1;
 }
 
 .hero-content {
