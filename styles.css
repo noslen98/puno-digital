@@ -129,23 +129,21 @@ img { max-width: 100%; display: block; }
 }
 
 .hero-overlay {
-    position: absolute;
-    inset: 0;
+  position: absolute;
+  inset: 0;
 
-    background-image: url("lago titicaca.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  background:
+    linear-gradient(
+      rgba(13, 61, 107, 0.6),
+      rgba(13, 61, 107, 0.6)
+    ),
+    url("lago%20titicaca.jpg");
 
-    z-index: 1;
-}
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
-.hero-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  padding: 2rem;
-  animation: heroFadeIn 1.2s ease both;
+  z-index: 1;
 }
 
 @keyframes heroFadeIn {
