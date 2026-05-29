@@ -1,0 +1,540 @@
+/* ---------- Google Fonts ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Raleway:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+/* ---------- CSS Variables (Paleta Puno) ---------- */
+:root {
+  --azul-titicaca: #1a6fa8;
+  --azul-profundo: #0d3d6b;
+  --azul-cielo: #4da8d8;
+  --dorado-candelaria: #c9950a;
+  --dorado-claro: #f0b429;
+  --rojo-tierra: #a83232;
+  --rojo-vivo: #d94040;
+  --verde-altiplano: #3a7d44;
+  --blanco-nieve: #f5f3ee;
+  --beige: #e8e0d0;
+  --gris-oscuro: #2a2a2a;
+  --texto: #1c1c1c;
+  --sombra: rgba(0, 0, 0, 0.18);
+  --radius: 12px;
+  --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Modo oscuro */
+[data-theme="dark"] {
+  --blanco-nieve: #131a24;
+  --beige: #1e2a38;
+  --texto: #e8e4da;
+  --gris-oscuro: #ccc;
+  --sombra: rgba(0, 0, 0, 0.45);
+}
+
+/* ---------- Reset & Base ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Raleway', sans-serif;
+  background-color: var(--blanco-nieve);
+  color: var(--texto);
+  transition: background-color 0.4s, color 0.4s;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cinzel Decorative', serif;
+  line-height: 1.2;
+}
+
+p, li, span { font-family: 'Lora', serif; line-height: 1.8; }
+
+a { text-decoration: none; color: inherit; transition: color var(--transition); }
+
+img { max-width: 100%; display: block; }
+
+/* ---------- Navbar ---------- */
+.navbar {
+  background: linear-gradient(90deg, var(--azul-profundo) 0%, var(--azul-titicaca) 100%) !important;
+  box-shadow: 0 2px 18px var(--sombra);
+  padding: 0.6rem 1.5rem;
+  transition: background var(--transition);
+}
+
+.navbar-brand {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.35rem;
+  color: var(--dorado-claro) !important;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navbar-brand img { width: 38px; height: 38px; border-radius: 50%; }
+
+.navbar-nav .nav-link {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  color: #d9eaf7 !important;
+  letter-spacing: 0.04em;
+  padding: 0.5rem 1rem;
+  position: relative;
+  transition: color var(--transition);
+}
+
+.navbar-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%; right: 50%;
+  height: 2px;
+  background: var(--dorado-claro);
+  transition: left 0.3s, right 0.3s;
+}
+
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .nav-link.active::after {
+  left: 10%; right: 10%;
+}
+
+.navbar-nav .nav-link:hover { color: var(--dorado-claro) !important; }
+
+/* Toggle modo oscuro */
+#theme-toggle {
+  background: none;
+  border: 2px solid var(--dorado-claro);
+  border-radius: 50px;
+  padding: 4px 14px;
+  color: var(--dorado-claro);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+#theme-toggle:hover {
+  background: var(--dorado-claro);
+  color: var(--azul-profundo);
+}
+
+/* ---------- Hero Section ---------- */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--azul-profundo) 0%, var(--azul-titicaca) 60%, var(--dorado-candelaria) 100%);
+}
+
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: url('../images/lago titicaca.jpg') center/cover no-repeat;
+  opacity: 0.45;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
+  animation: heroFadeIn 1.2s ease both;
+}
+
+@keyframes heroFadeIn {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-badge {
+  display: inline-block;
+  background: var(--dorado-candelaria);
+  color: #fff;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 6px 20px;
+  border-radius: 50px;
+  margin-bottom: 1.2rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  color: #fff;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.45);
+  margin-bottom: 0.6rem;
+}
+
+.hero h1 span { color: var(--dorado-claro); }
+
+.hero p {
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: #d9ecf8;
+  max-width: 640px;
+  margin: 0 auto 2rem;
+}
+
+.hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+.btn-puno-primary {
+  background: var(--dorado-candelaria);
+  color: #fff;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  padding: 0.75rem 2.2rem;
+  border-radius: 50px;
+  border: none;
+  transition: background var(--transition), transform 0.2s;
+  box-shadow: 0 4px 18px rgba(201,149,10,0.45);
+}
+.btn-puno-primary:hover { background: var(--dorado-claro); color: #000; transform: translateY(-3px); }
+
+.btn-puno-outline {
+  background: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  padding: 0.73rem 2rem;
+  border-radius: 50px;
+  transition: background var(--transition), color var(--transition), transform 0.2s;
+}
+.btn-puno-outline:hover { background: #fff; color: var(--azul-profundo); transform: translateY(-3px); }
+
+/* Stats strip */
+.stats-strip {
+  background: var(--azul-profundo);
+  color: #fff;
+  padding: 1.4rem 0;
+}
+.stats-strip .stat-item {
+  text-align: center;
+  padding: 0.5rem 1rem;
+}
+.stats-strip .stat-number {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 2rem;
+  color: var(--dorado-claro);
+}
+.stats-strip .stat-label {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+/* ---------- Section Titles ---------- */
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.section-title h2 {
+  font-size: clamp(1.6rem, 4vw, 2.8rem);
+  color: var(--azul-profundo);
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.6rem;
+}
+[data-theme="dark"] .section-title h2 { color: var(--dorado-claro); }
+.section-title h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 25%; right: 25%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--dorado-candelaria), var(--rojo-tierra));
+  border-radius: 2px;
+}
+.section-title p {
+  color: var(--gris-oscuro);
+  font-size: 1.05rem;
+  max-width: 620px;
+  margin: 0.8rem auto 0;
+}
+
+/* ---------- Cards Destinos ---------- */
+.destinos-section { padding: 5rem 0; background: var(--blanco-nieve); }
+
+.filter-btns { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin-bottom: 2rem; }
+
+.filter-btn {
+  background: var(--beige);
+  color: var(--texto);
+  border: 2px solid transparent;
+  border-radius: 50px;
+  padding: 0.45rem 1.3rem;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.filter-btn:hover, .filter-btn.active {
+  background: var(--azul-titicaca);
+  color: #fff;
+  border-color: var(--azul-titicaca);
+}
+
+.destino-card {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 4px 20px var(--sombra);
+  background: var(--beige);
+  transition: transform var(--transition), box-shadow var(--transition);
+  height: 100%;
+}
+.destino-card:hover { transform: translateY(-8px); box-shadow: 0 12px 36px var(--sombra); }
+
+.destino-card img {
+  width: 100%; height: 210px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.destino-card:hover img { transform: scale(1.07); }
+
+.destino-card .card-body { padding: 1.2rem 1.4rem 1.5rem; }
+.destino-card .card-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1rem;
+  color: var(--azul-profundo);
+  margin-bottom: 0.5rem;
+}
+[data-theme="dark"] .destino-card .card-title { color: var(--dorado-claro); }
+.destino-card .card-text { font-size: 0.92rem; color: var(--gris-oscuro); }
+
+.badge-categoria {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 50px;
+}
+
+/* ---------- Cultura & Tradiciones ---------- */
+.cultura-section {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, var(--azul-profundo) 0%, #1b4f72 100%);
+  color: #fff;
+}
+.cultura-section .section-title h2 { color: var(--dorado-claro); }
+.cultura-section .section-title p { color: #b0cde8; }
+
+.cultura-section .accordion-item {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: var(--radius) !important;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+}
+.cultura-section .accordion-button {
+  background: transparent;
+  color: var(--dorado-claro);
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.95rem;
+  border-radius: var(--radius) !important;
+}
+.cultura-section .accordion-button:not(.collapsed) {
+  background: rgba(201,149,10,0.2);
+  color: var(--dorado-claro);
+  box-shadow: none;
+}
+.cultura-section .accordion-button::after { filter: invert(1) sepia(1) saturate(2) hue-rotate(10deg); }
+.cultura-section .accordion-body { color: #c8dff0; font-family: 'Lora', serif; line-height: 1.85; }
+
+/* ---------- Gastronomía ---------- */
+.gastro-section { padding: 5rem 0; background: var(--beige); }
+
+.gastro-card {
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--blanco-nieve);
+  box-shadow: 0 4px 20px var(--sombra);
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+  height: 100%;
+}
+.gastro-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 14px 40px var(--sombra); }
+.gastro-card img { width: 100%; height: 185px; object-fit: cover; }
+.gastro-card .card-body { padding: 1.1rem 1.3rem; }
+.gastro-card .card-title { font-family: 'Cinzel Decorative', serif; font-size: 0.95rem; color: var(--rojo-tierra); }
+.gastro-card .card-text { font-size: 0.88rem; color: var(--gris-oscuro); }
+.gastro-card .btn-ver-receta {
+  background: var(--rojo-tierra);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 5px 18px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  font-family: 'Raleway', sans-serif;
+  transition: background var(--transition);
+}
+.gastro-card .btn-ver-receta:hover { background: var(--rojo-vivo); }
+
+/* ---------- Mapa ---------- */
+.mapa-section { padding: 5rem 0; background: var(--blanco-nieve); }
+#map { height: 480px; border-radius: var(--radius); box-shadow: 0 6px 30px var(--sombra); z-index: 1; }
+
+/* ---------- Itinerario ---------- */
+.itinerario-section {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #f9f4ec, #e8dcc8);
+}
+[data-theme="dark"] .itinerario-section { background: linear-gradient(135deg, #1a2030, #0d1825); }
+
+.itinerario-form {
+  background: var(--blanco-nieve);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  box-shadow: 0 6px 30px var(--sombra);
+}
+
+.form-label {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--azul-profundo);
+  margin-bottom: 0.35rem;
+}
+[data-theme="dark"] .form-label { color: var(--dorado-claro); }
+
+.form-control, .form-select {
+  border-radius: 8px;
+  border: 2px solid var(--beige);
+  font-family: 'Lora', serif;
+  font-size: 0.95rem;
+  padding: 0.6rem 1rem;
+  background: var(--blanco-nieve);
+  color: var(--texto);
+  transition: border-color var(--transition);
+}
+.form-control:focus, .form-select:focus {
+  border-color: var(--azul-titicaca);
+  box-shadow: 0 0 0 3px rgba(26,111,168,0.18);
+}
+
+.form-control.is-invalid { border-color: var(--rojo-vivo); }
+.form-control.is-valid   { border-color: var(--verde-altiplano); }
+
+.itinerario-resultado {
+  background: linear-gradient(135deg, var(--azul-profundo), var(--azul-titicaca));
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 2rem;
+  margin-top: 2rem;
+  display: none;
+}
+.itinerario-resultado h4 { font-family: 'Cinzel Decorative', serif; color: var(--dorado-claro); }
+.itinerario-resultado ul { list-style: none; padding: 0; }
+.itinerario-resultado ul li {
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  font-family: 'Lora', serif;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.itinerario-resultado ul li::before { content: '🗺️'; font-size: 1rem; }
+
+/* ---------- Footer ---------- */
+footer {
+  background: linear-gradient(135deg, #0a2440, var(--azul-profundo));
+  color: #b8cfe8;
+  padding: 4rem 0 2rem;
+}
+footer h5 { font-family: 'Cinzel Decorative', serif; color: var(--dorado-claro); margin-bottom: 1.1rem; font-size: 0.95rem; }
+footer p, footer li { font-size: 0.9rem; line-height: 1.9; }
+footer a { color: #8ab8d8; transition: color var(--transition); }
+footer a:hover { color: var(--dorado-claro); }
+footer ul { list-style: none; padding: 0; }
+footer hr { border-color: rgba(255,255,255,0.12); }
+footer .footer-brand {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.4rem;
+  color: var(--dorado-claro);
+}
+
+/* Social icons */
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.25);
+  color: #b8cfe8;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  transition: all var(--transition);
+}
+.social-links a:hover {
+  background: var(--dorado-candelaria);
+  border-color: var(--dorado-candelaria);
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+/* ---------- Carousel custom ---------- */
+.carousel-item { max-height: 540px; }
+.carousel-item img { object-fit: cover; height: 540px; filter: brightness(0.78); }
+.carousel-caption {
+  bottom: 10%;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+}
+.carousel-caption h5 { font-family: 'Cinzel Decorative', serif; font-size: clamp(1.2rem, 3vw, 2.2rem); }
+.carousel-indicators [data-bs-target] { background-color: var(--dorado-claro); }
+
+/* ---------- Modal Gastronomía ---------- */
+.modal-header { background: var(--rojo-tierra); color: #fff; border-radius: var(--radius) var(--radius) 0 0; }
+.modal-header .btn-close { filter: invert(1); }
+.modal-title { font-family: 'Cinzel Decorative', serif; font-size: 1rem; }
+.modal-body { font-family: 'Lora', serif; background: var(--blanco-nieve); color: var(--texto); }
+.modal-body img { border-radius: var(--radius); margin-bottom: 1rem; }
+.modal-footer { background: var(--beige); }
+
+/* ---------- Scroll to top ---------- */
+#scroll-top {
+  position: fixed;
+  bottom: 2rem; right: 2rem;
+  background: var(--azul-titicaca);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 46px; height: 46px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s, transform 0.3s;
+  z-index: 999;
+  box-shadow: 0 4px 18px var(--sombra);
+}
+#scroll-top.visible { opacity: 1; pointer-events: all; }
+#scroll-top:hover { transform: translateY(-4px); background: var(--dorado-candelaria); }
+
+/* ---------- Animations ---------- */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in-up.visible { opacity: 1; transform: translateY(0); }
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 768px) {
+  .hero { min-height: 80vh; }
+  .hero h1 { font-size: 2rem; }
+  .stats-strip .stat-number { font-size: 1.6rem; }
+  #map { height: 320px; }
+  .carousel-item img { height: 300px; }
+}
+
+@media (max-width: 480px) {
+  .itinerario-form { padding: 1.5rem; }
+  .navbar-brand { font-size: 1rem; }
+}

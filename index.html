@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Puno Digital – Plataforma Turística y Cultural Interactiva</title>
+
+  <!-- SEO Meta -->
+  <meta name="description" content="Descubre la magia de Puno: Lago Titicaca, Islas Flotantes, cultura andina, gastronomía y festividades. La plataforma web turística de la Capital Folclórica del Perú.">
+  <meta name="keywords" content="Puno, Lago Titicaca, turismo, cultura andina, Virgen de la Candelaria, Islas Uros, gastronomía">
+  <meta name="author" content="Puno Digital">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Puno Digital – Turismo y Cultura">
+  <meta property="og:description" content="Explora Puno: el lago navegable más alto del mundo y la Capital Folclórica del Perú.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_PE">
+
+  <!-- Bootstrap 5 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNavbar">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <span>🌊</span> Conoce puno con Noslen
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-center gap-1">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="#destinos">Destinos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#cultura">Cultura</a></li>
+        <li class="nav-item"><a class="nav-link" href="#gastronomia">Gastronomía</a></li>
+        <li class="nav-item"><a class="nav-link" href="#mapa">Mapa</a></li>
+        <li class="nav-item"><a class="nav-link" href="#itinerario">Itinerario</a></li>
+        <li class="nav-item ms-2">
+          <button id="theme-toggle" title="Cambiar tema">🌙</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Alert container -->
+<div id="alert-container" style="position:fixed;top:75px;right:1rem;z-index:9999;max-width:340px;"></div>
+
+<!-- ===== HERO ===== -->
+<header class="hero" id="inicio">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🇵🇪 Capital Folclórica del Perú</div>
+    <h1>Bienvenido a <span>Puno</span></h1>
+    <p>Donde el lago más alto del mundo se junta con danzas, sabores y comunidades que llevan siglos vivos en el altiplano.</p>
+    <div class="hero-btns">
+      <a href="#destinos" class="btn-puno-primary">Explorar Destinos</a>
+      <a href="#itinerario" class="btn-puno-outline">Planifica tu Viaje</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ===== STATS STRIP ===== -->
+<aside class="stats-strip" aria-label="Datos destacados de Puno">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-6 col-md-3 stat-item">
+        <div class="stat-number">3,812</div>
+        <div class="stat-label">m.s.n.m — Lago Titicaca</div>
+      </div>
+      <div class="col-6 col-md-3 stat-item">
+        <div class="stat-number">8,372</div>
+        <div class="stat-label">km² superficie del lago</div>
+      </div>
+      <div class="col-6 col-md-3 stat-item">
+        <div class="stat-number">+200</div>
+        <div class="stat-label">Danzas registradas</div>
+      </div>
+      <div class="col-6 col-md-3 stat-item">
+        <div class="stat-number">2</div>
+        <div class="stat-label">Patrimonios UNESCO</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- ===== CAROUSEL ===== -->
+<section class="py-0" aria-label="Galería de imágenes de Puno">
+  <div id="punoCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#punoCarousel" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#punoCarousel" data-bs-slide-to="1"></button>
+      <button type="button" data-bs-target="#punoCarousel" data-bs-slide-to="2"></button>
+      <button type="button" data-bs-target="#punoCarousel" data-bs-slide-to="3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://www.ytuqueplanes.com/imagenes/fotos/novedades/b-lago-titicaca.webp" alt="Lago Titicaca" class="d-block w-100">
+        <div class="carousel-caption">
+          <h5>Lago Titicaca</h5>
+          <p>El lago navegable más alto del mundo</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://denomades.imgix.net/destinos/puno/350/islas-flotantes-de-uros.jpg" alt="Islas Flotantes Uros" class="d-block w-100">
+        <div class="carousel-caption">
+          <h5>Islas Flotantes de los Uros</h5>
+          <p>Maravilla cultural construida sobre totora</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://andinoperu.b-cdn.net/wp-content/uploads/2024/08/tour-en-bicicleta-sillustani-puno.webp" alt="Sillustani" class="d-block w-100">
+        <div class="carousel-caption">
+          <h5>Sillustani</h5>
+          <p>Complejo funerario preinca del altiplano</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://www.chullostravelperu.com/blog/wp-content/uploads/2025/12/interna-aniversario-puno-2-1.jpg" alt="Altiplano" class="d-block w-100">
+        <div class="carousel-caption">
+          <h5>Altiplano Punense</h5>
+          <p>Entre la Cordillera de Carabaya y Apolobamba</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#punoCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#punoCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+</section>
+
+<!-- ===== DESTINOS TURÍSTICOS ===== -->
+<section class="destinos-section" id="destinos">
+  <div class="container">
+    <div class="section-title fade-in-up">
+      <h2>Destinos Turísticos</h2>
+      <p>Estos son los lugares que no te puedes perder si vas a Puno. Algunos son famosos, otros los conocen pocos.</p>
+    </div>
+
+    <!-- Filtros -->
+    <div class="filter-btns mb-4" role="group" aria-label="Filtrar destinos">
+      <button class="filter-btn active" data-filtro="todos">🗺️ Todos</button>
+      <button class="filter-btn" data-filtro="lago">💧 Lago</button>
+      <button class="filter-btn" data-filtro="isla">🏝️ Islas</button>
+      <button class="filter-btn" data-filtro="arqueologia">🏛️ Arqueología</button>
+      <button class="filter-btn" data-filtro="ciudad">🏙️ Ciudades</button>
+      <button class="filter-btn" data-filtro="naturaleza">🌿 Naturaleza</button>
+    </div>
+
+    <div class="row g-4" id="destinos-grid">
+      <!-- Renderizado por JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ===== CULTURA & TRADICIONES ===== -->
+<section class="cultura-section" id="cultura">
+  <div class="container">
+    <div class="section-title fade-in-up">
+      <h2>Cultura & Tradiciones</h2>
+      <p>Puno no solo tiene paisajes. Tiene danzas, fiestas y costumbres que siguen vivos hoy, no en un museo.</p>
+    </div>
+    <div class="row g-4 align-items-start">
+      <div class="col-lg-6 fade-in-up">
+        <div class="accordion" id="culturaAccordion">
+          <article class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#cult1">
+                🕯️ Virgen de la Candelaria — UNESCO
+              </button>
+            </h2>
+            <div id="cult1" class="accordion-collapse collapse show" data-bs-parent="#culturaAccordion">
+              <div class="accordion-body">
+                La Candelaria es en febrero y es una locura en el buen sentido. Más de 200 grupos de danzas y bandas toman las calles durante días. La UNESCO la declaró <strong>Patrimonio Cultural Inmaterial de la Humanidad</strong> en 2014, pero los puneños ya lo sabían mucho antes.
+                <br><br>
+                <span class="badge" style="background:var(--dorado-candelaria)">📅 Febrero</span>
+              </div>
+            </div>
+          </article>
+          <article class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cult2">
+                💃 Danzas Tradicionales
+              </button>
+            </h2>
+            <div id="cult2" class="accordion-collapse collapse" data-bs-parent="#culturaAccordion">
+              <div class="accordion-body">
+                <ul class="list-unstyled">
+                  <li>🔴 <strong>Diablada:</strong> Simboliza la lucha del bien contra el mal con imponentes máscaras.</li>
+                  <li>⚫ <strong>Morenada:</strong> Recuerda la historia de la esclavitud afro-andina.</li>
+                  <li>🟡 <strong>Caporales:</strong> Expresa el espíritu festivo y alegre del altiplano.</li>
+                  <li>🎵 <strong>Sikuri:</strong> Música ancestral de zampoñas (sikus), Patrimonio Inmaterial.</li>
+                  <li>🦙 <strong>Llamerada:</strong> Danza que celebra al camélido andino por excelencia.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <article class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cult3">
+                🧵 Textiles Andinos — UNESCO
+              </button>
+            </h2>
+            <div id="cult3" class="accordion-collapse collapse" data-bs-parent="#culturaAccordion">
+              <div class="accordion-body">
+                En Taquile los hombres son los que tejen, no las mujeres. Y lo hacen increíblemente bien. Sus técnicas en telar de cintura tienen más de 3,000 años y la UNESCO las reconoció en 2005. Si compras un tejido de ahí, es para toda la vida.
+              </div>
+            </div>
+          </article>
+          <article class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cult4">
+                🌾 Pueblos Originarios: Quechua & Aymara
+              </button>
+            </h2>
+            <div id="cult4" class="accordion-collapse collapse" data-bs-parent="#culturaAccordion">
+              <div class="accordion-body">
+                Los pueblos <strong>Quechua</strong> y <strong>Aymara</strong> son los que le dan identidad a Puno. Su relación con la <em>Pachamama</em> (Madre Tierra) no es folklore, es algo que viven de verdad. El <em>ayni</em>, que es ayudarse entre todos sin esperar plata, todavía funciona en muchas comunidades.
+                <br><br>
+                <span class="badge bg-primary me-2">Quechua</span>
+                <span class="badge bg-success">Aymara</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+      <aside class="col-lg-6 fade-in-up" aria-label="Imagen cultural de Puno">
+        <img src="https://cdn-blog.superprof.com/blog_pe/wp-content/uploads/2025/02/candelaria-puno-fetividad-peru-baile.png"
+             alt="Cultura Puno" class="w-100 rounded-3" style="object-fit:cover;height:420px;box-shadow:0 8px 32px rgba(0,0,0,0.35);">
+        <div class="mt-3 text-center">
+          <span class="badge me-2 px-3 py-2" style="background:var(--dorado-candelaria);font-size:.85rem">🏆 2 Patrimonios UNESCO</span>
+          <span class="badge px-3 py-2" style="background:var(--verde-altiplano);font-size:.85rem">🌍 Patrimonio Vivo</span>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GASTRONOMÍA ===== -->
+<section class="gastro-section" id="gastronomia">
+  <div class="container">
+    <div class="section-title fade-in-up">
+      <h2>Gastronomía Punense</h2>
+      <p>Comida de verdad, sin adornos. La cocina de Puno usa ingredientes del altiplano que la gente lleva siglos preparando.</p>
+    </div>
+    <div class="row g-4" id="gastro-grid">
+      <!-- Renderizado por JS -->
+    </div>
+  </div>
+</section>
+
+<!-- Modal Gastronomía -->
+<div class="modal fade" id="modalGastro" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal-gastro-title">Receta</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-3">
+          <div class="col-md-5">
+            <img id="modal-gastro-img" src="" alt="" class="w-100" style="height:220px;object-fit:cover;border-radius:10px;">
+          </div>
+          <div class="col-md-7">
+            <p id="modal-gastro-desc" class="mb-2"></p>
+            <h6 class="fw-bold mt-3" style="color:var(--rojo-tierra)">Ingredientes</h6>
+            <ul id="modal-gastro-ing" class="list-unstyled ps-1" style="font-size:.92rem;"></ul>
+            <h6 class="fw-bold mt-3" style="color:var(--rojo-tierra)">Preparación</h6>
+            <p id="modal-gastro-receta" style="font-size:.92rem;"></p>
+            <p class="mt-2 mb-0"><small><strong>Origen:</strong> <span id="modal-gastro-origen"></span></small></p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MAPA INTERACTIVO ===== -->
+<section class="mapa-section" id="mapa">
+  <div class="container">
+    <div class="section-title fade-in-up">
+      <h2>Mapa Turístico</h2>
+      <p>Ubica los destinos en el mapa. Haz clic en cada punto para ver de qué lugar se trata.</p>
+    </div>
+    <div id="map" class="fade-in-up"></div>
+    <p class="text-center mt-3 text-muted" style="font-size:.85rem">
+      <i class="bi bi-info-circle me-1"></i>Haz clic en los marcadores para ver información de cada destino.
+    </p>
+  </div>
+</section>
+
+<!-- ===== ITINERARIO INTERACTIVO ===== -->
+<section class="itinerario-section" id="itinerario">
+  <div class="container">
+    <div class="section-title fade-in-up">
+      <h2>Planifica tu Itinerario</h2>
+      <p>¿Cuántos días tienes y cuánto presupuesto? Completa el formulario y te armamos una idea de lo que podrías hacer.</p>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="itinerario-form fade-in-up">
+          <form id="form-itinerario" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="it-nombre" class="form-label">Tu Nombre *</label>
+                <input type="text" id="it-nombre" class="form-control" placeholder="Ej: María García" required minlength="2" pattern="[A-Za-záéíóúÁÉÍÓÚüÜñÑ\s]{2,}">
+                <div class="invalid-feedback">Este campo es obligatorio</div>
+              </div>
+              <div class="col-md-6">
+                <label for="it-email" class="form-label">Correo Electrónico</label>
+                <input type="email" id="it-email" class="form-control" placeholder="tu@correo.com">
+                <div class="invalid-feedback">Correo inválido</div>
+              </div>
+              <div class="col-md-4">
+                <label for="it-dias" class="form-label">Días de Estadía *</label>
+                <input type="number" id="it-dias" class="form-control" min="1" max="15" value="3" required>
+                <div class="invalid-feedback">Entre 1 y 15 días</div>
+              </div>
+              <div class="col-md-4">
+                <label for="it-personas" class="form-label">N° de Personas *</label>
+                <input type="number" id="it-personas" class="form-control" min="1" max="20" value="2" required>
+                <div class="invalid-feedback">Entre 1 y 20 personas</div>
+              </div>
+              <div class="col-md-4">
+                <label for="it-tipo" class="form-label">Tipo de Viaje *</label>
+                <select id="it-tipo" class="form-select" required>
+                  <option value="">Selecciona…</option>
+                  <option value="economico">Económico (~S/. 80/día)</option>
+                  <option value="intermedio" selected>Intermedio (~S/. 150/día)</option>
+                  <option value="premium">Premium (~S/. 280/día)</option>
+                </select>
+                <div class="invalid-feedback">Selecciona un tipo</div>
+              </div>
+              <div class="col-12">
+                <label for="it-presupuesto" class="form-label">Presupuesto Máximo (S/.) — Opcional</label>
+                <input type="number" id="it-presupuesto" class="form-control" min="100" placeholder="Ej: 1500">
+              </div>
+              <div class="col-12">
+                <label class="form-label">Intereses (opcional)</label>
+                <div class="d-flex flex-wrap gap-2">
+                  <div class="form-check"><input class="form-check-input" type="checkbox" id="int-cultura" value="cultura"><label class="form-check-label" for="int-cultura">Cultura</label></div>
+                  <div class="form-check"><input class="form-check-input" type="checkbox" id="int-naturaleza" value="naturaleza"><label class="form-check-label" for="int-naturaleza">Naturaleza</label></div>
+                  <div class="form-check"><input class="form-check-input" type="checkbox" id="int-gastro" value="gastronomia"><label class="form-check-label" for="int-gastro">Gastronomía</label></div>
+                  <div class="form-check"><input class="form-check-input" type="checkbox" id="int-aventura" value="aventura"><label class="form-check-label" for="int-aventura">Aventura</label></div>
+                  <div class="form-check"><input class="form-check-input" type="checkbox" id="int-fotografia" value="fotografia"><label class="form-check-label" for="int-fotografia">Fotografía</label></div>
+                </div>
+              </div>
+              <div class="col-12 text-center mt-2">
+                <button type="submit" class="btn-puno-primary px-5 py-2" style="border-radius:50px;border:none;font-size:1rem;">
+                  🗺️ Generar Itinerario
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <!-- Resultado -->
+          <div class="itinerario-resultado" id="itinerario-resultado">
+            <h4 id="it-res-nombre"></h4>
+            <p id="it-res-resumen" class="mb-1 opacity-75" style="font-family:'Raleway',sans-serif;font-size:.9rem;"></p>
+            <h5 class="mt-3" style="color:var(--dorado-claro)">💰 Presupuesto estimado: <span id="it-res-costo"></span></h5>
+            <h6 class="mt-3">Actividades sugeridas:</h6>
+            <ul id="it-res-lista"></ul>
+            <p class="mt-3 mb-0 opacity-75" style="font-size:.82rem;font-family:'Raleway',sans-serif;">
+              <i class="bi bi-info-circle me-1"></i>
+              Los precios son referenciales. Contacta con agencias locales para tarifas exactas.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="row g-4 mb-4">
+      <div class="col-lg-4">
+        <div class="footer-brand mb-3">🌊 Puno Digital</div>
+        <p>Proyecto web desarrollado para mostrar la cultura, los destinos y la gastronomía de la región Puno. Hecho con mucho frío y cariño desde el altiplano.</p>
+        <div class="social-links mt-3">
+          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h5>Destinos</h5>
+        <ul>
+          <li><a href="#destinos">Lago Titicaca</a></li>
+          <li><a href="#destinos">Islas Uros</a></li>
+          <li><a href="#destinos">Taquile</a></li>
+          <li><a href="#destinos">Sillustani</a></li>
+          <li><a href="#destinos">Lampa</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h5>Secciones</h5>
+        <ul>
+          <li><a href="#cultura">Cultura</a></li>
+          <li><a href="#gastronomia">Gastronomía</a></li>
+          <li><a href="#mapa">Mapa</a></li>
+          <li><a href="#itinerario">Itinerario</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h5>Información Útil</h5>
+        <ul>
+          <li><i class="bi bi-geo-alt me-2" style="color:var(--dorado-claro)"></i>Puno, Perú — 3,812 m.s.n.m</li>
+          <li><i class="bi bi-thermometer-half me-2" style="color:var(--dorado-claro)"></i>Temp. media: 9°C</li>
+          <li><i class="bi bi-currency-exchange me-2" style="color:var(--dorado-claro)"></i>Moneda: Sol Peruano (PEN)</li>
+          <li><i class="bi bi-translate me-2" style="color:var(--dorado-claro)"></i>Idiomas: Español, Quechua, Aymara</li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+    <div class="row align-items-center">
+      <div class="col-md-6 text-center text-md-start" style="font-size:.85rem;">
+        © 2026 Puno 
+      </div>
+      <div class="col-md-6 text-center text-md-end mt-2 mt-md-0" style="font-size:.82rem;opacity:.7;">
+        Hecho con ❤️ para promover el patrimonio de Puno
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll to Top -->
+<button id="scroll-top" aria-label="Volver arriba">↑</button>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<!-- Custom JS -->
+<script src="js/main.js"></script>
+</body>
+</html>
