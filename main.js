@@ -1,5 +1,5 @@
-let punoData = null; // aquí guardamos los datos del JSON cuando carguen
-let mapa = null;     // instancia del mapa leaflet
+let punoData = null;
+let mapa = null;
 
 // cuando el DOM cargue, iniciamos todo
 document.addEventListener('DOMContentLoaded', () => {
@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // --- modo oscuro/claro ---
-// guarda la preferencia en localStorage para que se recuerde al volver
 function initTheme() {
   const saved = localStorage.getItem('puno-theme') || 'light';
   applyTheme(saved);
@@ -33,29 +32,65 @@ function applyTheme(theme) {
   if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
 }
 
+// --- helper para imágenes: intenta varias rutas ---
+function getImageCandidates(path) {
+  const clean = String(path || '').trim();
+  if (!clean) return [];
+
+  const noImagesPrefix = clean.replace(/^images\//i, '');
+  const withImagesPrefix = clean.startsWith('images/') ? clean : `images/${clean}`;
+
+  const candidates = [];
+  for (const p of [clean, noImagesPrefix, withImagesPrefix]) {
+    if (p && !candidates.includes(p)) candidates.push(p);
+  }
+  return candidates;
+}
+
+function setImageWithFallback(imgEl, path, alt = '') {
+  if (!imgEl) return;
+
+  const candidates = getImageCandidates(path);
+  let index = 0;
+
+  const tryNext = () => {
+    if (index >= candidates.length) {
+      imgEl.removeAttribute('src');
+      imgEl.alt = alt || 'Imagen no disponible';
+      return;
+    }
+
+    const nextSrc = candidates[index++];
+    imgEl.onerror = tryNext;
+    imgEl.src = nextSrc;
+    imgEl.alt = alt || '';
+  };
+
+  tryNext();
+}
+
 // --- carga del archivo JSON con los datos de destinos y gastronomía ---
 async function loadData() {
   try {
     const res = await fetch('puno.json');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
     punoData = await res.json();
     renderDestinos(punoData.destinos);
     renderGastronomia(punoData.gastronomia);
     initMap(punoData.marcadores);
   } catch (err) {
     console.error('Error cargando datos:', err);
-    // Fallback: mostrar mensaje amigable
     const destGrid = document.getElementById('destinos-grid');
     if (destGrid) destGrid.innerHTML = '<p class="text-center text-muted">Cargando destinos…</p>';
   }
 }
 
 // --- renderizado de tarjetas de destinos ---
-// colores por categoría para los badges
 const categoriaColores = {
-  lago:       { bg: '#1a6fa8', label: 'Lago' },
-  isla:       { bg: '#2e8b57', label: 'Isla' },
-  arqueologia:{ bg: '#8b4513', label: 'Arqueología' },
-  ciudad:     { bg: '#d4690a', label: 'Ciudad' },
+  lago: { bg: '#1a6fa8', label: 'Lago' },
+  isla: { bg: '#2e8b57', label: 'Isla' },
+  arqueologia: { bg: '#8b4513', label: 'Arqueología' },
+  ciudad: { bg: '#d4690a', label: 'Ciudad' },
   naturaleza: { bg: '#3a7d44', label: 'Naturaleza' }
 };
 
@@ -68,15 +103,17 @@ function renderDestinos(destinos, filtro = 'todos') {
     : destinos.filter(d => d.categoria === filtro);
 
   grid.innerHTML = '';
+
   filtrados.forEach((d, i) => {
     const col = document.createElement('div');
     col.className = 'col-sm-6 col-lg-4 col-xl-3 fade-in-up';
     col.style.animationDelay = `${i * 0.07}s`;
 
     const cat = categoriaColores[d.categoria] || { bg: '#666', label: d.categoria };
+
     col.innerHTML = `
       <article class="destino-card h-100">
-        <img src="${d.imagen}" alt="${d.nombre}" loading="lazy">
+        <img class="destino-img" alt="${d.nombre}" loading="lazy">
         <div class="card-body">
           <span class="badge badge-categoria mb-2" style="background:${cat.bg}">${cat.label}</span>
           <h5 class="card-title">${d.nombre}</h5>
@@ -84,10 +121,13 @@ function renderDestinos(destinos, filtro = 'todos') {
           <small class="text-muted"><i class="bi bi-geo-alt-fill me-1"></i>${d.altitud}</small>
         </div>
       </article>`;
+
     grid.appendChild(col);
+
+    const img = col.querySelector('img');
+    setImageWithFallback(img, d.imagen, d.nombre);
   });
 
-  // Re-observar para animaciones
   observeFadeIn();
 }
 
@@ -106,12 +146,16 @@ function renderGastronomia(items) {
   const grid = document.getElementById('gastro-grid');
   if (!grid) return;
 
+  grid.innerHTML = '';
+
   items.forEach((item, i) => {
     const col = document.createElement('div');
     col.className = 'col-sm-6 col-lg-4 fade-in-up';
+    col.style.animationDelay = `${i * 0.07}s`;
+
     col.innerHTML = `
       <article class="gastro-card h-100">
-        <img src="${item.imagen}" alt="${item.nombre}" loading="lazy">
+        <img class="gastro-img" alt="${item.nombre}" loading="lazy">
         <div class="card-body">
           <h5 class="card-title">${item.nombre}</h5>
           <p class="card-text">${item.descripcion}</p>
@@ -120,26 +164,33 @@ function renderGastronomia(items) {
           </button>
         </div>
       </article>`;
+
     grid.appendChild(col);
+
+    const img = col.querySelector('img');
+    setImageWithFallback(img, item.imagen, item.nombre);
   });
 
   observeFadeIn();
 }
 
-window.abrirModalGastro = function(id) {
+window.abrirModalGastro = function (id) {
   if (!punoData) return;
   const item = punoData.gastronomia.find(g => g.id === id);
   if (!item) return;
 
+  const modalImg = document.getElementById('modal-gastro-img');
   document.getElementById('modal-gastro-title').textContent = item.nombre;
-  document.getElementById('modal-gastro-img').src = item.imagen;
-  document.getElementById('modal-gastro-img').alt = item.nombre;
   document.getElementById('modal-gastro-desc').textContent = item.descripcion;
-  document.getElementById('modal-gastro-receta').textContent = item.receta;
-  document.getElementById('modal-gastro-origen').textContent = item.origen;
+  document.getElementById('modal-gastro-receta').textContent = item.receta || '';
+  document.getElementById('modal-gastro-origen').textContent = item.origen || '';
 
   const ingList = document.getElementById('modal-gastro-ing');
-  ingList.innerHTML = item.ingredientes.map(i => `<li><span class="badge bg-secondary me-1">•</span>${i}</li>`).join('');
+  ingList.innerHTML = (item.ingredientes || [])
+    .map(i => `<li><span class="badge bg-secondary me-1">•</span>${i}</li>`)
+    .join('');
+
+  setImageWithFallback(modalImg, item.imagen, item.nombre);
 
   const modal = new bootstrap.Modal(document.getElementById('modalGastro'));
   modal.show();
@@ -147,7 +198,8 @@ window.abrirModalGastro = function(id) {
 
 // --- mapa con Leaflet.js usando tiles de OpenStreetMap ---
 function initMap(marcadores) {
-  if (!document.getElementById('map') || typeof L === 'undefined') return;
+  const mapEl = document.getElementById('map');
+  if (!mapEl || typeof L === 'undefined') return;
 
   mapa = L.map('map').setView([-15.84, -70.02], 9);
 
@@ -157,14 +209,14 @@ function initMap(marcadores) {
   }).addTo(mapa);
 
   const iconColors = {
-    ciudad:     '🏙️',
-    lago:       '💧',
-    isla:       '🏝️',
-    arqueologia:'🏛️',
+    ciudad: '🏙️',
+    lago: '💧',
+    isla: '🏝️',
+    arqueologia: '🏛️',
     naturaleza: '🌿'
   };
 
-  marcadores.forEach(m => {
+  (marcadores || []).forEach(m => {
     const emoji = iconColors[m.tipo] || '📍';
     const icon = L.divIcon({
       html: `<div style="font-size:1.6rem;filter:drop-shadow(0 2px 4px rgba(0,0,0,.4))">${emoji}</div>`,
@@ -182,10 +234,9 @@ function initMap(marcadores) {
 // --- formulario de itinerario con validación en tiempo real ---
 const formItinerario = document.getElementById('form-itinerario');
 if (formItinerario) {
-  // Validación en tiempo real
   formItinerario.querySelectorAll('input, select').forEach(el => {
-    el.addEventListener('input',  () => validateField(el));
-    el.addEventListener('blur',   () => validateField(el));
+    el.addEventListener('input', () => validateField(el));
+    el.addEventListener('blur', () => validateField(el));
     el.addEventListener('change', () => validateField(el));
   });
 
@@ -201,42 +252,48 @@ if (formItinerario) {
 
 function validateField(el) {
   const val = el.value.trim();
+
   if (el.hasAttribute('required') && !val) {
     setFieldState(el, false, 'Este campo es obligatorio');
     return false;
   }
+
   if (el.type === 'email' && val && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
     setFieldState(el, false, 'Correo inválido');
     return false;
   }
+
   if (el.type === 'number') {
-    const min = parseInt(el.min), max = parseInt(el.max), num = parseInt(val);
+    const min = parseInt(el.min, 10);
+    const max = parseInt(el.max, 10);
+    const num = parseInt(val, 10);
     if (val && (num < min || num > max)) {
       setFieldState(el, false, `Valor entre ${min} y ${max}`);
       return false;
     }
   }
+
   if (val) setFieldState(el, true);
   else el.classList.remove('is-valid', 'is-invalid');
+
   return true;
 }
 
 function setFieldState(el, valid, msg = '') {
-  el.classList.toggle('is-valid',   valid);
+  el.classList.toggle('is-valid', valid);
   el.classList.toggle('is-invalid', !valid);
   const fb = el.nextElementSibling;
   if (fb && fb.classList.contains('invalid-feedback')) fb.textContent = msg;
 }
 
 function generarItinerario() {
-  const nombre    = document.getElementById('it-nombre').value;
-  const dias      = parseInt(document.getElementById('it-dias').value);
-  const personas  = parseInt(document.getElementById('it-personas').value);
-  const tipo      = document.getElementById('it-tipo').value;
-  const presupuesto = parseInt(document.getElementById('it-presupuesto').value) || 0;
+  const nombre = document.getElementById('it-nombre').value;
+  const dias = parseInt(document.getElementById('it-dias').value, 10);
+  const personas = parseInt(document.getElementById('it-personas').value, 10);
+  const tipo = document.getElementById('it-tipo').value;
 
   const costoBase = { economico: 80, intermedio: 150, premium: 280 };
-  const costo = costoBase[tipo] * dias * personas;
+  const costo = (costoBase[tipo] || 0) * dias * personas;
 
   const actividades = {
     economico: [
@@ -263,7 +320,7 @@ function generarItinerario() {
     ]
   };
 
-  const acts = actividades[tipo].slice(0, Math.min(dias + 1, actividades[tipo].length));
+  const acts = (actividades[tipo] || []).slice(0, Math.min(dias + 1, (actividades[tipo] || []).length));
 
   const resultado = document.getElementById('itinerario-resultado');
   document.getElementById('it-res-nombre').textContent = `Hola, ${nombre}!`;
@@ -277,14 +334,14 @@ function generarItinerario() {
   resultado.style.display = 'block';
   resultado.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-  // Alerta de éxito
   showAlert('¡Itinerario generado con éxito!', 'success');
 }
 
-// --- función para mostrar alertas temporales de Bootstrap ---
+// --- alerta temporal ---
 function showAlert(msg, tipo = 'info') {
   const container = document.getElementById('alert-container');
   if (!container) return;
+
   const id = `alert-${Date.now()}`;
   const el = document.createElement('div');
   el.id = id;
@@ -292,23 +349,31 @@ function showAlert(msg, tipo = 'info') {
   el.role = 'alert';
   el.innerHTML = `${msg} <button type="button" class="btn-close" data-bs-dismiss="alert"></button>`;
   container.appendChild(el);
+
   setTimeout(() => {
     const a = document.getElementById(id);
-    if (a) { const bsA = bootstrap.Alert.getOrCreateInstance(a); bsA.close(); }
+    if (a && window.bootstrap?.Alert) {
+      const bsA = bootstrap.Alert.getOrCreateInstance(a);
+      bsA.close();
+    } else if (a) {
+      a.remove();
+    }
   }, 5000);
 }
 
-// --- botón de volver arriba, aparece al bajar 400px ---
+// --- botón volver arriba ---
 function initScrollTop() {
   const btn = document.getElementById('scroll-top');
   if (!btn) return;
+
   window.addEventListener('scroll', () => {
     btn.classList.toggle('visible', window.scrollY > 400);
   }, { passive: true });
+
   btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
 
-// --- animaciones al hacer scroll usando IntersectionObserver ---
+// --- animaciones al hacer scroll ---
 function initScrollObserver() {
   observeFadeIn();
 }
@@ -319,6 +384,7 @@ function observeFadeIn() {
     els.forEach(el => el.classList.add('visible'));
     return;
   }
+
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -338,6 +404,7 @@ function observeFadeIn() {
 function initNavbarScroll() {
   const nav = document.querySelector('.navbar');
   if (!nav) return;
+
   window.addEventListener('scroll', () => {
     nav.style.backdropFilter = window.scrollY > 60 ? 'blur(8px)' : 'none';
   }, { passive: true });
